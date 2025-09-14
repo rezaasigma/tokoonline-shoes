@@ -1,0 +1,296 @@
+## 📁 **STRUKTUR FOLDER**
+
+```
+C:\xampp\htdocs\tokoonline\
+│
+├── Asset\
+│   └── img\
+│       ├── gray_shoe.jpg
+│       ├── green_shoe.jpg
+│       ├── maroon_shoe.jpg
+│       ├── red_shoe.jpg
+│       └── white_shoe.jpg
+│
+├── css\
+│   └── style.css (opsional, untuk custom styling)
+│
+├── js\
+│   └── script.js (opsional, untuk interaksi tambahan)
+│
+├── includes\
+│   ├── header.php
+│   ├── navbar.php
+│   ├── footer.php
+│   └── db.php (koneksi database - hanya disebutkan, tidak dibuat script)
+│
+├── user\
+│   ├── index.php (halaman utama user)
+│   ├── register.php (form pendaftaran)
+│   ├── login.php
+│   ├── cart.php (keranjang belanja)
+│   ├── checkout.php
+│   └── order_history.php
+│
+├── admin\
+│   ├── dashboard.php
+│   ├── manage_products.php
+│   ├── manage_orders.php
+│   ├── manage_users.php
+│   └── add_product.php
+│
+├── index.php (redirect ke user/index.php atau halaman login)
+└── README.txt (opsional)
+```
+
+---
+
+## 🎨 **DESAIN TAMPILAN HALAMAN**
+
+---
+
+### 🏠 **1. Halaman Depan (User - `user/index.php`)**
+
+**Navbar (Include dari `includes/navbar.php`)**  
+- Logo toko di kiri  
+- Menu: Beranda, Produk, Keranjang, Riwayat Pesanan, Login/Register  
+- Jika sudah login: Tampilkan nama user + tombol Logout
+
+**Hero Section**  
+- Gambar banner besar + tulisan: “Sepatu Terbaik untuk Gaya Hidupmu!”  
+- Tombol: “Lihat Produk”
+
+**Produk Terbaru (Grid Bootstrap 5)**  
+Tampilkan 5 produk dalam card:
+
+```plaintext
+[ Gambar gray_shoe ]     [ Gambar green_shoe ]     [ Gambar maroon_shoe ]
+Nama: Sepatu Abu-abu     Nama: Sepatu Hijau        Nama: Sepatu Maroon
+Harga: Rp 250.000        Harga: Rp 275.000         Harga: Rp 300.000
+[Tombol "Tambah ke Keranjang"]
+
+[ Gambar red_shoe ]      [ Gambar white_shoe ]
+Nama: Sepatu Merah       Nama: Sepatu Putih
+Harga: Rp 290.000        Harga: Rp 260.000
+[Tombol "Tambah ke Keranjang"]
+```
+
+**Footer**  
+- Informasi kontak, media sosial, copyright
+
+---
+
+### 📝 **2. Halaman Pendaftaran (`user/register.php`)**
+
+**Form Pendaftaran (Bootstrap Form)**
+
+```plaintext
+Judul: Daftar Akun Baru
+
+Form:
+- Nama Lengkap      [________________________]
+- Email             [________________________]
+- Password          [________________________]
+- Konfirmasi Pass   [________________________]
+- Alamat            [________________________]
+- No. Telepon       [________________________]
+
+[ ] Saya setuju dengan syarat dan ketentuan
+
+[Tombol "Daftar"]
+
+Sudah punya akun? [Login di sini]
+```
+
+> Validasi: Semua field wajib diisi. Password minimal 6 karakter.
+
+---
+
+### 🛒 **3. Halaman Keranjang (`user/cart.php`)**
+
+```plaintext
+Judul: Keranjang Belanja Anda
+
+Tabel:
+---------------------------------------------------------
+| Gambar | Nama Produk | Harga Satuan | Qty | Subtotal |
+---------------------------------------------------------
+| [img]  | Sepatu Abu  | Rp 250.000   | [2] | Rp 500.000 |
+| [img]  | Sepatu Putih| Rp 260.000   | [1] | Rp 260.000 |
+---------------------------------------------------------
+                          TOTAL: Rp 760.000
+
+[Tombol "Lanjutkan Belanja"]   [Tombol "Checkout"]
+```
+
+> Qty bisa diubah/dikurangi/dihapus per item.
+
+---
+
+### 💳 **4. Halaman Checkout (`user/checkout.php`)**
+
+```plaintext
+Judul: Konfirmasi Pembayaran
+
+Informasi Pengiriman:
+Nama    : [Nama User Otomatis]
+Alamat  : [Alamat User Otomatis - bisa diedit]
+No. HP  : [Nomor HP User Otomatis - bisa diedit]
+
+Ringkasan Pesanan:
+- Sepatu Abu x2   Rp 500.000
+- Sepatu Putih x1 Rp 260.000
+--------------------------
+Total: Rp 760.000
+
+Metode Pembayaran:
+( ) Transfer Bank
+( ) COD (Bayar di Tempat)
+
+[ ] Saya telah membaca dan menyetujui syarat pembelian
+
+[Tombol "Konfirmasi Pesanan"]
+
+Kembali ke [Keranjang]
+```
+
+> Setelah konfirmasi, tampilkan notifikasi: “Pesanan Anda berhasil! Nomor pesanan: #INV-2025-001”
+
+---
+
+### 📊 **5. Halaman Admin Dashboard (`admin/dashboard.php`)**
+
+**Sidebar Kiri (Navigasi Admin)**  
+- Dashboard  
+- Kelola Produk  
+- Kelola Pesanan  
+- Kelola Pengguna  
+- Logout
+
+**Konten Utama:**
+
+```plaintext
+Selamat Datang, Admin!
+
+Statistik Hari Ini:
+- Total Pesanan: 12
+- Total Pendapatan: Rp 3.200.000
+- Produk Terjual: 28
+
+Grafik Penjualan (placeholder card Bootstrap)
+
+Daftar Pesanan Terbaru (tabel ringkas):
+-------------------------------------------------
+| No | Nama Pemesan | Total | Status     | Aksi |
+-------------------------------------------------
+| 1  | Budi Santoso | 760K  | Diproses   | [Lihat]
+| 2  | Siti Aminah  | 520K  | Dikirim    | [Lihat]
+-------------------------------------------------
+```
+
+---
+
+### 👕 **6. Halaman Kelola Produk (`admin/manage_products.php`)**
+
+```plaintext
+Judul: Daftar Produk
+
+Tombol: [+ Tambah Produk Baru]
+
+Tabel Produk:
+---------------------------------------------------------------
+| ID | Nama Produk   | Harga     | Stok | Gambar       | Aksi |
+---------------------------------------------------------------
+| 1  | Sepatu Abu    | 250.000   | 15   | [thumbnail]  | [Edit] [Hapus]
+| 2  | Sepatu Hijau  | 275.000   | 8    | [thumbnail]  | [Edit] [Hapus]
+...
+
+Pagination (Bootstrap)
+```
+
+---
+
+### ➕ **7. Halaman Tambah Produk (`admin/add_product.php`)**
+
+```plaintext
+Judul: Tambah Produk Baru
+
+Form:
+- Nama Produk     [________________________]
+- Deskripsi       [________________________] (textarea)
+- Harga           [________________________]
+- Stok            [________________________]
+- Upload Gambar   [Pilih File] (simpan di Asset/img/)
+
+[Tombol "Simpan Produk"]   [Batal]
+```
+
+---
+
+### 📦 **8. Halaman Kelola Pesanan (`admin/manage_orders.php`)**
+
+```plaintext
+Judul: Daftar Pesanan
+
+Filter: [Status: Semua ▼] [Cari Nomor Invoice]
+
+Tabel:
+-----------------------------------------------------------------------------------
+| No | Invoice     | Nama Pemesan | Total     | Tanggal     | Status     | Aksi |
+-----------------------------------------------------------------------------------
+| 1  | #INV-001    | Budi         | Rp 760K   | 2025-04-05  | Diproses   | [Ubah Status]
+| 2  | #INV-002    | Siti         | Rp 520K   | 2025-04-05  | Dikirim    | [Ubah Status]
+-----------------------------------------------------------------------------------
+
+Dropdown Ubah Status: [Diproses ▼] → [Dikirim] / [Selesai] / [Dibatalkan]
+```
+
+---
+
+### 👥 **9. Halaman Kelola Pengguna (`admin/manage_users.php`)**
+
+```plaintext
+Judul: Daftar Pengguna
+
+Tabel:
+-------------------------------------------------------
+| ID | Nama Lengkap | Email           | Tgl Daftar | Aksi |
+-------------------------------------------------------
+| 1  | Budi Santoso | budi@email.com  | 2025-04-01 | [Hapus]
+| 2  | Siti Aminah  | siti@email.com  | 2025-04-02 | [Hapus]
+-------------------------------------------------------
+```
+
+---
+
+## 🖼️ **CATATAN GAMBAR PRODUK**
+
+- Semua gambar produk disimpan di:  
+  `C:\xampp\htdocs\tokoonline\Asset\img\`
+
+- Nama file gambar:  
+  - `gray_shoe.jpg`  
+  - `green_shoe.jpg`  
+  - `maroon_shoe.jpg`  
+  - `red_shoe.jpg`  
+  - `white_shoe.jpg`
+
+> Gunakan `<img src="Asset/img/nama_file.jpg" class="img-fluid" alt="...">` di kode HTML nanti.
+
+---
+
+## 🧭 **ALUR PEMBELIAN USER**
+
+1. User **mendaftar** → login → otomatis redirect ke halaman utama.
+2. Pilih produk → klik **“Tambah ke Keranjang”**.
+3. Buka **Keranjang** → review item → klik **“Checkout”**.
+4. Isi/cek alamat → pilih metode bayar → **konfirmasi pesanan**.
+5. Pesanan masuk ke sistem → admin memproses → user bisa cek status di **Riwayat Pesanan**.
+
+---
+
+## ✅ **CATATAN TAMBAHAN**
+
+- Gunakan Bootstrap 5 untuk responsive dan komponen UI (navbar, card, button, form, dll).
+- Untuk login, buat halaman sederhana dengan form email & password.
+- Admin hanya bisa diakses jika user memiliki role “admin” (login terpisah atau cek session role).
+- Semua halaman wajib include `header.php`, `navbar.php`, dan `footer.php` untuk konsistensi tampilan.S
